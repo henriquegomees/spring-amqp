@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+    env_file: .env
+    links:
+      - rabbitmq
+    depends_on:
+      rabbitmq:
+        condition: service_started
+  rabbitmq:
+    image: rabbitmq:3.7-management-alpine
+    container-name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
