@@ -1,4 +1,2 @@
 #!/bin/sh
-
-java -jar /app/app.jar
-
+java -jar app.jar
