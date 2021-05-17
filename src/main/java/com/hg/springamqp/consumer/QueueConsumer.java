@@ -15,6 +15,9 @@ public class QueueConsumer {
 
     @RabbitListener(queues = QUEUE_NAME)
     public void onMessage(Message message) {
-        log.info("Message received: [{}]", message.getBody().toString());
+        String strMessage = new String(message.getBody());
+        String routingKey = message.getMessageProperties().getReceivedRoutingKey();
+
+        log.info("Message received: [{}] on routing key [{}]", strMessage, routingKey);
     }
 }
