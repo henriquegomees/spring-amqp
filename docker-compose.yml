@@ -1,17 +1,16 @@
-version: '3.8'
+version: '3.3'
 services:
   app:
     build:
       context: .
     env_file: .env
     links:
-      - rabbitmq
-    depends_on:
-      rabbitmq:
-        condition: service_started
-  rabbitmq:
+      - amqp
+    ports:
+      - 8080:8080
+  amqp:
     image: rabbitmq:3.7-management-alpine
-    container-name: rabbitmq
+    container_name: rabbitmq
     ports:
       - 5672:5672
       - 15672:15672
