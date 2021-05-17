@@ -1,8 +1,10 @@
 FROM openjdk:11
 
 RUN mkdir /app
-COPY ./target/spring-amqp-1.0-SNAPSHOT.jar /app/app.jar
-COPY ./scripts/execute.sh /app/
-RUN chmod +x /execute.sh
+COPY ./target/spring-amqp-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY ./scripts/execute.sh /app/execute.sh
+RUN chmod +x /app/execute.sh
+WORKDIR /app
+RUN ls -la
 
-ENTRYPOINT ["/bin/sh", "execute.sh"]
+ENTRYPOINT ["./execute.sh"]
